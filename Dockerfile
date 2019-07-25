@@ -3,13 +3,18 @@ FROM ubuntu:19.04
 MAINTAINER Frederic Auberson <fauberso@dxc.com>
 
 ARG ARCHI_VERSION=4.4.0
+ARG ARCHI_GIT_PLUGIN_VERSION=0.5.2.201907081356
 ARG ARCHI_USER=archi
 
-RUN apt-get update && apt-get install -y sudo curl libgtk2.0-0 libxtst6 xvfb && apt-get clean
+RUN apt-get update && apt-get install -y sudo curl unzip libgtk2.0-0 libxtst6 xvfb && apt-get clean
 
 RUN curl -o /archi.tar.gz https://www.archimatetool.com/downloads/4.4.0/Archi-Linux64-$ARCHI_VERSION.tgz
 RUN tar -zxvf /archi.tar.gz
 RUN rm /archi.tar.gz
+
+RUN curl -o /archi-git.zip https://www.archimatetool.com/downloads/plugins/org.archicontribs.modelrepository_$ARCHI_GIT_PLUGIN_VERSION.zip
+RUN unzip /archi-git.zip -d /Archi/plugins
+RUN rm /archi-git.zip
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/$ARCHI_USER && \
@@ -27,5 +32,4 @@ ENV HOME /home/$ARCHI_USER
 
 WORKDIR /home/$ARCHI_USER
 
-ENTRYPOINT ["archi"]
-CMD ["--help"]
+CMD ["archi", "--help"]
