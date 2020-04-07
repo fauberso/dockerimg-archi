@@ -4,7 +4,7 @@ MAINTAINER Frederic Auberson <fauberso@dxc.com>
 
 ARG ARCHI_CHECKSUM=78ef89ac08f
 ARG ARCHI_VERSION=4.6.0
-ARG ARCHI_GIT_PLUGIN_VERSION=0.6.0.202004031233
+ARG ARCHI_GIT_PLUGIN_VERSION=0.6.2.202004031233
 ARG ARCHI_USER=archi
 
 RUN apt-get update && apt-get install -y sudo curl unzip libgtk2.0-0 libxtst6 xvfb git && apt-get clean
