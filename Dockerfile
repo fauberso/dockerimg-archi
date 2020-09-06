@@ -8,7 +8,7 @@ ARG ARCHI_USER=archi
 
 RUN apt-get update && apt-get install -y sudo curl unzip libgtk2.0-0 libxtst6 xvfb git && apt-get clean
 
-RUN curl -o /archi.tar.gz https://www.archimatetool.com/downloads/4.4.0/Archi-Linux64-$ARCHI_VERSION.tgz
+RUN curl -o /archi.tar.gz https://www.archimatetool.com/downloads/$ARCHI_VERSION/Archi-Linux64-$ARCHI_VERSION.tgz
 RUN tar -zxvf /archi.tar.gz
 RUN rm /archi.tar.gz
 
